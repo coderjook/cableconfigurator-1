@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { pizzaRed } from "../Styles/colors";
 import { title } from "../Styles/title";
 
 const NavbarStyled = styled.div`
-  background-color: ${pizzaRed};
+  background-color: #243d91;
   padding: 10px;
   position: fixed;
   width: 100%;
@@ -20,7 +19,7 @@ const Logo = styled(title)`
 export function Navbar() {
   return (
     <NavbarStyled>
-      <Logo>Sliceline</Logo>
+      <Logo>ROMAL KABELCONFIGURATOR</Logo>
     </NavbarStyled>
   );
 }

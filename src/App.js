@@ -3,6 +3,10 @@ import { GlobalStyle } from "./Styles/GlobalStyle";
 import { Navbar } from "./Navbar/Navbar";
 import { Banner } from "./Banner/Banner";
 import { FoodDialog } from "./FoodDialog/FoodDialog";
+import { CableItem } from "./Cable/Cable";
+import { ConnectorItemA } from "./Connector/ConnectorA";
+import { ConnectorItemB } from "./Connector/ConnectorB";
+import { TuleItem } from "./Tule/Tule";
 import { Menu } from "./Menu/Menu";
 import { Order } from "./Order/Order";
 import { useOpenFood } from "./Hooks/useOpenFood";
@@ -20,7 +24,11 @@ function App() {
       <Navbar />
       <Order {...orders} {...openFood} />
       <Banner />
-      <Menu {...openFood} />
+      <CableItem />
+      <ConnectorItemA />
+      <ConnectorItemB />
+      <TuleItem />
+      {/* <Menu {...openFood} /> */}
     </>
   );
 }
