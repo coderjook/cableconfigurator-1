@@ -33,7 +33,7 @@ const OrderContainer = styled.div`
       ? `
     &:hover {
       cursor: pointer;
-      background-color: #e7e7e7;
+      background-color: #F58020;
     }
   `
       : `
@@ -125,7 +125,7 @@ export function Order({ orders, setOrders, setOpenFood }) {
           </OrderContent>
         )}
         <DialogFooter>
-          <ConfirmButton>Checkout</ConfirmButton>
+          <ConfirmButton>Vraag offerte aan</ConfirmButton>
         </DialogFooter>
       </OrderStyled>
     </>

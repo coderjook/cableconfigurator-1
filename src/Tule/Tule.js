@@ -13,7 +13,7 @@ export function TuleItem() {
   return (
     <MenuStyled>
       <>
-        <h1> Kies kabel </h1>
+        <h1> Kies Tule </h1>
         <TuleGrid>
           {tules.map((tule) => (
             <Tule onClick={() => console.log("klik op de kabel")}>
