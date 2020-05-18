@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FoodLabel } from "../Products/FoodGrid";
+import { ProductLabel } from "../Products/ProductGrid";
 import { pizzaRed } from "../Styles/colors";
 import { title } from "../Styles/title";
 import { formatPrice } from "../Data/FoodData";
@@ -55,7 +55,7 @@ const DialogBanner = styled.div`
   background-size: cover;
 `;
 
-const DialogBannerName = styled(FoodLabel)`
+const DialogBannerName = styled(ProductLabel)`
   font-size: 30px;
   padding: 5px 40px;
   top: ${({ img }) => (img ? `100px` : `20px`)};
@@ -89,22 +89,29 @@ export function getPrice(order) {
   );
 }
 
-function hasToppings(food) {
-  return food.section === "Pizza";
+function hasToppings(cable) {
+  return cable.section === "Pizza";
 }
 
-function CableDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
-  const quantity = useQuantity(openFood && openFood.quantity);
-  const toppings = useToppings(openFood.toppings);
-  const choiceRadio = useChoice(openFood.choice);
-  const isEditing = openFood.index > -1;
+function CableDialogContainer({
+  openCable,
+  setOpenCable,
+  openFood,
+  setOpenFood,
+  setOrders,
+  orders,
+}) {
+  const quantity = useQuantity(openCable && openCable.quantity);
+  const toppings = useToppings(openCable.toppings);
+  const choiceRadio = useChoice(openCable.choice);
+  const isEditing = openCable.index > -1;
 
   function close() {
-    setOpenFood();
+    setOpenCable();
   }
 
   const order = {
-    ...openFood,
+    ...openCable,
     quantity: quantity.value,
     toppings: toppings.toppings,
     choice: choiceRadio.value,
@@ -112,7 +119,7 @@ function CableDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
 
   function editOrder() {
     const newOrders = [...orders];
-    newOrders[openFood.index] = order;
+    newOrders[openCable.index] = order;
     setOrders(newOrders);
     close();
   }
@@ -126,25 +133,25 @@ function CableDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
     <>
       <DialogShadow onClick={close} />
       <Dialog>
-        <DialogBanner img={openFood.img}>
-          <DialogBannerName> {openFood.typenummer} </DialogBannerName>
+        <DialogBanner img={openCable.img}>
+          <DialogBannerName> {openCable.typenummer} </DialogBannerName>
         </DialogBanner>
         <DialogContent>
           <QuantityInput quantity={quantity} />
-          {hasToppings(openFood) && (
+          {hasToppings(openCable) && (
             <>
               <h3> Would you like toppings?</h3>
               <Toppings {...toppings} />
             </>
           )}
-          {openFood.choices && (
-            <Choices openFood={openFood} choiceRadio={choiceRadio} />
+          {openCable.choices && (
+            <Choices openCable={openCable} choiceRadio={choiceRadio} />
           )}
         </DialogContent>
         <DialogFooter>
           <ConfirmButton
             onClick={isEditing ? editOrder : addToOrder}
-            disabled={openFood.choices && !choiceRadio.value}
+            disabled={openCable.choices && !choiceRadio.value}
           >
             {isEditing ? "update order" : "add to order"}{" "}
             {formatPrice(getPrice(order))}
@@ -155,7 +162,7 @@ function CableDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
   );
 }
 
-export function FoodDialog(props) {
-  if (!props.openFood) return null;
+export function CableDialog(props) {
+  if (!props.openCable) return null;
   return <CableDialogContainer {...props} />;
 }

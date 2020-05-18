@@ -1,30 +1,28 @@
 import styled from "styled-components";
 import { title } from "../Styles/title";
 
-export const TuleGrid = styled.div`
+export const ProductGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding-bottom: 40px;
 `;
 
-export const TuleLabel = styled(title)`
+export const ProductLabel = styled(title)`
   position: absolute;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px;
 `;
 
-export const Tule = styled.div`
+export const Product = styled.div`
   height: 100px;
   padding: 10px;
   font-size: 20px;
-  background-color: #EFF6FB;
-  // background-image: ${({ img }) => `url(${img});`};
-  // background-position: center;
-  // background-size: cover;
-  // filter: contrast(75%);
+  background-image: ${({ img }) => `url(${img});`};
+  background-position: center;
+  background-size: cover;
+  filter: contrast(75%);
   margin-top: 5px;
-  border: 3px solid grey;
   border-radius: 7px;
   transition-property: box-shadow margin-top filter;
   transition-duration: 0.1s;

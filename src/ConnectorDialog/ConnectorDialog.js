@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { FoodLabel } from "../Products/FoodGrid";
+import { ProductLabel } from "../Products/ProductGrid";
 import { pizzaRed } from "../Styles/colors";
 import { title } from "../Styles/title";
-import { formatPrice } from "../Data/FoodData";
+import { formatPrice } from "../Data/ConnectorData";
 import { QuantityInput } from "./QuantityInput";
 import { useQuantity } from "../Hooks/useQuantity";
 import { Toppings } from "./Toppings";
@@ -55,7 +55,7 @@ const DialogBanner = styled.div`
   background-size: cover;
 `;
 
-const DialogBannerName = styled(FoodLabel)`
+const DialogBannerName = styled(ProductLabel)`
   font-size: 30px;
   padding: 5px 40px;
   top: ${({ img }) => (img ? `100px` : `20px`)};
@@ -89,22 +89,29 @@ export function getPrice(order) {
   );
 }
 
-function hasToppings(food) {
-  return food.section === "Pizza";
+function hasToppings(connector) {
+  return connector.section === "Pizza";
 }
 
-function CableDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
-  const quantity = useQuantity(openFood && openFood.quantity);
-  const toppings = useToppings(openFood.toppings);
-  const choiceRadio = useChoice(openFood.choice);
-  const isEditing = openFood.index > -1;
+function ConnectorDialogContainer({
+  openCable,
+  setOpenCable,
+  openConnector,
+  setOpenConnector,
+  setOrders,
+  orders,
+}) {
+  const quantity = useQuantity(openConnector && openConnector.quantity);
+  const toppings = useToppings(openConnector.toppings);
+  const choiceRadio = useChoice(openConnector.choice);
+  const isEditing = openConnector.index > -1;
 
   function close() {
-    setOpenFood();
+    setOpenConnector();
   }
 
   const order = {
-    ...openFood,
+    ...openConnector,
     quantity: quantity.value,
     toppings: toppings.toppings,
     choice: choiceRadio.value,
@@ -112,7 +119,7 @@ function CableDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
 
   function editOrder() {
     const newOrders = [...orders];
-    newOrders[openFood.index] = order;
+    newOrders[openConnector.index] = order;
     setOrders(newOrders);
     close();
   }
@@ -126,25 +133,25 @@ function CableDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
     <>
       <DialogShadow onClick={close} />
       <Dialog>
-        <DialogBanner img={openFood.img}>
-          <DialogBannerName> {openFood.typenummer} </DialogBannerName>
+        <DialogBanner img={openConnector.img}>
+          <DialogBannerName> {openConnector.typenummer} </DialogBannerName>
         </DialogBanner>
         <DialogContent>
           <QuantityInput quantity={quantity} />
-          {hasToppings(openFood) && (
+          {hasToppings(openConnector) && (
             <>
               <h3> Would you like toppings?</h3>
               <Toppings {...toppings} />
             </>
           )}
-          {openFood.choices && (
-            <Choices openFood={openFood} choiceRadio={choiceRadio} />
+          {openConnector.choices && (
+            <Choices openConnector={openConnector} choiceRadio={choiceRadio} />
           )}
         </DialogContent>
         <DialogFooter>
           <ConfirmButton
             onClick={isEditing ? editOrder : addToOrder}
-            disabled={openFood.choices && !choiceRadio.value}
+            disabled={openConnector.choices && !choiceRadio.value}
           >
             {isEditing ? "update order" : "add to order"}{" "}
             {formatPrice(getPrice(order))}
@@ -155,7 +162,7 @@ function CableDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
   );
 }
 
-export function FoodDialog(props) {
-  if (!props.openFood) return null;
-  return <CableDialogContainer {...props} />;
+export function ConnectorDialog(props) {
+  if (!props.openConnector) return null;
+  return <ConnectorDialogContainer {...props} />;
 }

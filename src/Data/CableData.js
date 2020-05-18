@@ -1,35 +1,38 @@
 export function formatPrice(price) {
   return price.toLocaleString("en-US", {
     style: "currency",
-    currency: "USD",
+    currency: "EUR",
   });
 }
 
-export const cables = [
+export const cableItems = [
   {
     artikelnummer: 21292,
     typenummer: "LMR-400-75",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G37",
     inkoopprijs: 40.83,
     prijsper: 10,
     diameter_buitenmantel: 11.02,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: true,
   },
+
   {
     artikelnummer: 21387,
     typenummer: "LMR-400-75-FR",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G37",
     inkoopprijs: 65.24,
     prijsper: 10,
     diameter_buitenmantel: 10.2,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: true,
   },
   {
@@ -37,12 +40,13 @@ export const cables = [
     typenummer: "LMR-400",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G37",
     inkoopprijs: 39.05,
     prijsper: 10,
     diameter_buitenmantel: 9.66,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: true,
   },
   {
@@ -50,12 +54,13 @@ export const cables = [
     typenummer: "LMR-400-Ultraflex",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G37",
     inkoopprijs: 56.81,
     prijsper: 10,
     diameter_buitenmantel: 8.66,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: true,
   },
   {
@@ -63,12 +68,13 @@ export const cables = [
     typenummer: "LMR-400-LSZH",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G37",
     inkoopprijs: 39.05,
     prijsper: 10,
     diameter_buitenmantel: 9.56,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: false,
   },
   {
@@ -76,12 +82,13 @@ export const cables = [
     typenummer: " LMR-240",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G30",
     inkoopprijs: 27.69,
     prijsper: 10,
     diameter_buitenmantel: 5.23,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: true,
   },
   {
@@ -89,12 +96,13 @@ export const cables = [
     typenummer: "LMR-240-Ultraflex",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G30",
     inkoopprijs: 33.73,
     prijsper: 10,
     diameter_buitenmantel: 3.46,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: false,
   },
   {
@@ -102,12 +110,13 @@ export const cables = [
     typenummer: "LMR-600",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G47",
     inkoopprijs: 71.01,
     prijsper: 10,
     diameter_buitenmantel: 10.02,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: false,
   },
   {
@@ -115,59 +124,21 @@ export const cables = [
     typenummer: "LMR-600-Ultraflex",
     merk: "Times Microwave Systems",
     kleur: "zwart",
+    img: "/img/lmr40075.jpg",
     configurator: "coax",
     kabelgroep: "G47",
     inkoopprijs: 106.52,
     prijsper: 10,
     diameter_buitenmantel: 11.25,
-    pmaak_aantal: 500,
-    haspelgeschikt: false,
-  },
-  {
-    artikelnummer: 24483,
-    typenummer: "LMR-600-LSZH",
-    merk: "Times Microwave Systems",
-    kleur: "zwart",
-    configurator: "coax",
-    kabelgroep: "G47",
-    inkoopprijs: 71.01,
-    prijsper: 10,
-    diameter_buitenmantel: 10.98,
-    pmaak_aantal: 500,
-    haspelgeschikt: false,
-  },
-  {
-    artikelnummer: 21667,
-    typenummer: "LMR-195",
-    merk: "Times Microwave Systems",
-    kleur: "zwart",
-    configurator: "coax",
-    kabelgroep: "G1",
-    inkoopprijs: 20.59,
-    prijsper: 10,
-    diameter_buitenmantel: 5.23,
-    pmaak_aantal: 500,
-    haspelgeschikt: true,
-  },
-  {
-    artikelnummer: 23634,
-    typenummer: "LMR-195-FR",
-    merk: "Times Microwave Systems",
-    kleur: "zwart",
-    configurator: "coax",
-    kabelgroep: "G1",
-    inkoopprijs: 31.6,
-    prijsper: 10,
-    diameter_buitenmantel: 5.26,
-    pmaak_aantal: 500,
+    opmaak_aantal: 500,
     haspelgeschikt: false,
   },
 ];
 
-// export const foods = foodItems.reduce((res, food) => {
-//   if (!res[food.section]) {
-//     res[food.section] = [];
-//   }
-//   res[food.section].push(food);
-//   return res;
-// }, {});
+export const cables = cableItems.reduce((res, cable) => {
+  if (!res[cable.merk]) {
+    res[cable.merk] = [];
+  }
+  res[cable.merk].push(cable);
+  return res;
+}, {});

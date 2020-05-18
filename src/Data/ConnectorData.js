@@ -1,11 +1,11 @@
 export function formatPrice(price) {
   return price.toLocaleString("en-US", {
     style: "currency",
-    currency: "USD",
+    currency: "EUR",
   });
 }
 
-export const connectors = [
+export const connectorItems = [
   {
     artikelnummer: 8423,
     typenummer: "BNC KRIMPCONNECTOR HAAKS",
@@ -488,10 +488,10 @@ export const connectors = [
   },
 ];
 
-// export const foods = foodItems.reduce((res, food) => {
-//   if (!res[food.section]) {
-//     res[food.section] = [];
-//   }
-//   res[food.section].push(food);
-//   return res;
-// }, {});
+export const connectors = connectorItems.reduce((res, connector) => {
+  if (!res[connector.merk]) {
+    res[connector.merk] = [];
+  }
+  res[connector.merk].push(connector);
+  return res;
+}, {});

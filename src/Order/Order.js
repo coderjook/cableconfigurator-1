@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+
 import {
   DialogContent,
   DialogFooter,
   ConfirmButton,
-} from "../FoodDialog/FoodDialog";
-import { formatPrice } from "../Data/FoodData";
-import { getPrice } from "../FoodDialog/FoodDialog";
+} from "../CableDialog/CableDialog";
+
+import { formatPrice } from "../Data/CableData";
+import { getPrice } from "../CableDialog/CableDialog";
 
 const OrderStyled = styled.div`
   position: fixed;
@@ -53,7 +55,7 @@ const DetailItem = styled.div`
   font-size: 10px;
 `;
 
-export function Order({ orders, setOrders, setOpenFood }) {
+export function Order({ setOpenCable, orders, setOrders, setOpenConnector }) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
@@ -71,20 +73,20 @@ export function Order({ orders, setOrders, setOpenFood }) {
     <>
       <OrderStyled>
         {orders.length === 0 ? (
-          <OrderContent>no orders yet</OrderContent>
+          <OrderContent>geen assemblie geconfigureerd</OrderContent>
         ) : (
           <OrderContent>
             {" "}
-            <OrderContainer>Your Order:</OrderContainer> {""}
+            <OrderContainer>Jouw assemblie:</OrderContainer> {""}
             {orders.map((order, index) => (
               <OrderContainer editable>
                 <OrderItem
                   onClick={() => {
-                    setOpenFood({ ...order, index });
+                    setOpenCable({ ...order, index });
                   }}
                 >
                   <div>{order.quantity}</div>
-                  <div>{order.name}</div>
+                  <div>{order.typenummer}</div>
                   <div
                     style={{ cursor: "pointer" }}
                     onClick={(e) => {
