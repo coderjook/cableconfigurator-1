@@ -85,7 +85,7 @@ export function Order({ setOpenCable, orders, setOrders, setOpenConnector }) {
                     setOpenCable({ ...order, index });
                   }}
                 >
-                  <div>{order.quantity}</div>
+                  <div>{order.length}</div>
                   <div>{order.typenummer}</div>
                   <div
                     style={{ cursor: "pointer" }}
@@ -98,12 +98,17 @@ export function Order({ setOpenCable, orders, setOrders, setOpenConnector }) {
                   </div>
                   <div> {formatPrice(getPrice(order))}</div>
                 </OrderItem>
-                <DetailItem>
-                  {order.toppings
-                    .filter((t) => t.checked)
-                    .map((topping) => topping.name)
-                    .join(", ")}
-                </DetailItem>
+                {order.toppings ? (
+                  <DetailItem>
+                    {order.toppings
+                      .filter((t) => t.checked)
+                      .map((topping) => topping.name)
+                      .join(", ")}
+                  </DetailItem>
+                ) : (
+                  "geen topping"
+                )}
+                <DetailItem>lengte kabel: {order.length}</DetailItem>
                 {order.choice && <DetailItem>{order.choice}</DetailItem>}
               </OrderContainer>
             ))}

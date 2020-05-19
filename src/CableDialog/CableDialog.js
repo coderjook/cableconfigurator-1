@@ -1,15 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { ProductLabel } from "../Products/ProductGrid";
-import { pizzaRed } from "../Styles/colors";
+import { romalOranje } from "../Styles/colors";
 import { title } from "../Styles/title";
 import { formatPrice } from "../Data/FoodData";
-import { QuantityInput } from "./QuantityInput";
-import { useQuantity } from "../Hooks/useQuantity";
-import { Toppings } from "./Toppings";
-import { useToppings } from "../Hooks/useToppings";
-import { useChoice } from "../Hooks/useChoice";
-import { Choices } from "./Choices";
+import { LengthInput } from "./LengthInput";
+import { useLength } from "../Hooks/useLength";
 
 const Dialog = styled.div`
   width: 500px;
@@ -70,7 +66,7 @@ export const ConfirmButton = styled(title)`
   text-align: center;
   width: 200px;
   cursor: pointer;
-  background-color: ${pizzaRed};
+  background-color: ${romalOranje};
   ${({ disabled }) =>
     disabled &&
     `
@@ -80,17 +76,8 @@ export const ConfirmButton = styled(title)`
    `}
 `;
 
-const pricePerTopping = 0.5;
 export function getPrice(order) {
-  return (
-    order.quantity *
-    (order.inkoopprijs +
-      order.toppings.filter((t) => t.checked).length * pricePerTopping)
-  );
-}
-
-function hasToppings(cable) {
-  return cable.section === "Pizza";
+  return order.length * order.inkoopprijs;
 }
 
 function CableDialogContainer({
@@ -101,9 +88,8 @@ function CableDialogContainer({
   setOrders,
   orders,
 }) {
-  const quantity = useQuantity(openCable && openCable.quantity);
-  const toppings = useToppings(openCable.toppings);
-  const choiceRadio = useChoice(openCable.choice);
+  const length = useLength(openCable && openCable.length);
+
   const isEditing = openCable.index > -1;
 
   function close() {
@@ -112,9 +98,10 @@ function CableDialogContainer({
 
   const order = {
     ...openCable,
-    quantity: quantity.value,
-    toppings: toppings.toppings,
-    choice: choiceRadio.value,
+    quantity: null,
+    length: length.value,
+    toppings: null,
+    choice: null,
   };
 
   function editOrder() {
@@ -137,23 +124,11 @@ function CableDialogContainer({
           <DialogBannerName> {openCable.typenummer} </DialogBannerName>
         </DialogBanner>
         <DialogContent>
-          <QuantityInput quantity={quantity} />
-          {hasToppings(openCable) && (
-            <>
-              <h3> Would you like toppings?</h3>
-              <Toppings {...toppings} />
-            </>
-          )}
-          {openCable.choices && (
-            <Choices openCable={openCable} choiceRadio={choiceRadio} />
-          )}
+          <LengthInput length={length} />
         </DialogContent>
         <DialogFooter>
-          <ConfirmButton
-            onClick={isEditing ? editOrder : addToOrder}
-            disabled={openCable.choices && !choiceRadio.value}
-          >
-            {isEditing ? "update order" : "add to order"}{" "}
+          <ConfirmButton onClick={isEditing ? editOrder : addToOrder}>
+            {isEditing ? "wijzig kabel" : "selecteer de kabel"}{" "}
             {formatPrice(getPrice(order))}
           </ConfirmButton>
         </DialogFooter>

@@ -38,7 +38,9 @@ function App() {
       <Navbar />
       <Order {...orders} {...openCable} {...openConnector} />
       <Banner />
+      <h1>Stap 1 selecteer kabel </h1>
       <Cables {...openCable} />
+      <h1>Stap 2 selecteer connector </h1>
       <Connectors {...openConnector} />
     </>
   );

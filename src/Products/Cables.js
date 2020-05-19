@@ -5,7 +5,6 @@ import { Product, ProductGrid, ProductLabel } from "./ProductGrid";
 import { formatPrice } from "../Data/CableData";
 
 const ProductStyled = styled.div`
-  height: 1000px;
   margin: 0px 400px 50px 20px;
 `;
 
@@ -14,7 +13,7 @@ export function Cables({ setOpenCable }) {
     <ProductStyled>
       {Object.entries(cables).map(([sectionName, cables]) => (
         <>
-          <h1> {sectionName} </h1>
+          <h3> {sectionName} </h3>
           <ProductGrid>
             {cables.map((cable) => (
               <Product
