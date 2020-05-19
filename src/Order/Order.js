@@ -109,7 +109,12 @@ export function Order({ setOpenCable, orders, setOrders, setOpenConnector }) {
                   "geen topping"
                 )}
                 <DetailItem>lengte kabel: {order.length}</DetailItem>
-                {order.choice && <DetailItem>{order.choice}</DetailItem>}
+                {order.choice && (
+                  <DetailItem>afwerking: {order.choice}</DetailItem>
+                )}
+                {order.installation && (
+                  <DetailItem>afwerking: {order.installation}</DetailItem>
+                )}
               </OrderContainer>
             ))}
             <OrderContainer>

@@ -1,10 +1,3 @@
-export function formatPrice(price) {
-  return price.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-}
-
 export const tules = [
   {
     artikelnummer: 15439,

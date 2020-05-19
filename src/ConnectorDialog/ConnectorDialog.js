@@ -8,8 +8,10 @@ import { QuantityInput } from "./QuantityInput";
 import { useQuantity } from "../Hooks/useQuantity";
 import { Toppings } from "./Toppings";
 import { useToppings } from "../Hooks/useToppings";
+import { useInstallation } from "../Hooks/useInstallation";
 import { useChoice } from "../Hooks/useChoice";
 import { Choices } from "./Choices";
+import Tules from "./Tules";
 
 const Dialog = styled.div`
   width: 500px;
@@ -80,6 +82,16 @@ export const ConfirmButton = styled(title)`
    `}
 `;
 
+const CursorPointer = `cursor: pointer`;
+
+const RadioInput = styled.input`
+  ${CursorPointer}
+`;
+
+const Label = styled.label`
+  ${CursorPointer}
+`;
+
 const pricePerTopping = 0.5;
 export function getPrice(order) {
   return (
@@ -104,6 +116,7 @@ function ConnectorDialogContainer({
   const quantity = useQuantity(openConnector && openConnector.quantity);
   const toppings = useToppings(openConnector.toppings);
   const choiceRadio = useChoice(openConnector.choice);
+  const installationRadio = useInstallation();
   const isEditing = openConnector.index > -1;
 
   function close() {
@@ -115,6 +128,7 @@ function ConnectorDialogContainer({
     quantity: quantity.value,
     toppings: toppings.toppings,
     choice: choiceRadio.value,
+    installation: installationRadio.value,
   };
 
   function editOrder() {
@@ -134,10 +148,11 @@ function ConnectorDialogContainer({
       <DialogShadow onClick={close} />
       <Dialog>
         <DialogBanner img={openConnector.img}>
-          <DialogBannerName> {openConnector.typenummer} </DialogBannerName>
+          <DialogBannerName>{openConnector.typenummer}</DialogBannerName>
         </DialogBanner>
         <DialogContent>
-          <QuantityInput quantity={quantity} />
+          {openConnector.tulegroep}
+          {/* <QuantityInput quantity={quantity} /> */}
           {hasToppings(openConnector) && (
             <>
               <h3> Would you like toppings?</h3>
@@ -147,6 +162,39 @@ function ConnectorDialogContainer({
           {openConnector.choices && (
             <Choices openConnector={openConnector} choiceRadio={choiceRadio} />
           )}
+          <h3> Kies de afwerking:</h3>
+          <RadioInput
+            type="radio"
+            id="geen"
+            name="geen"
+            value="geen"
+            checked={installationRadio.value === "geen"}
+            onChange={installationRadio.onChange}
+          />
+
+          <Label for="geen">geen afwerking</Label>
+          <RadioInput
+            type="radio"
+            id="krimpkous"
+            name="krimpkous"
+            value="krimpkous"
+            checked={installationRadio.value === "krimpkous"}
+            onChange={installationRadio.onChange}
+          />
+
+          <Label for="krimpkous">zwarte krimpkous</Label>
+          <RadioInput
+            type="radio"
+            id="tule"
+            name="tule"
+            value="tule"
+            checked={installationRadio.value === "tule"}
+            onChange={installationRadio.onChange}
+          />
+
+          <Label for="tule">tule</Label>
+          <h3>tules</h3>
+          <Tules tulegroep={openConnector.tulegroep} />
         </DialogContent>
         <DialogFooter>
           <ConfirmButton
