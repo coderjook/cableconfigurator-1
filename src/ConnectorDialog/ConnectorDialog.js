@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ProductLabel } from "../Products/ProductGrid";
 import { pizzaRed } from "../Styles/colors";
@@ -117,18 +117,24 @@ function ConnectorDialogContainer({
   const toppings = useToppings(openConnector.toppings);
   const choiceRadio = useChoice(openConnector.choice);
   const installationRadio = useInstallation();
+  // const tuleRadio = useChoice();
   const isEditing = openConnector.index > -1;
+  const [tuleState, setTuleState] = useState();
+  const tuleOrder = `${tuleState}`;
 
   function close() {
     setOpenConnector();
   }
 
+  console.log({ tuleOrder });
+
   const order = {
     ...openConnector,
-    quantity: quantity.value,
+    quantity: null,
     toppings: toppings.toppings,
-    choice: choiceRadio.value,
+    choice: null,
     installation: installationRadio.value,
+    tule: tuleOrder,
   };
 
   function editOrder() {
@@ -171,7 +177,6 @@ function ConnectorDialogContainer({
             checked={installationRadio.value === "geen"}
             onChange={installationRadio.onChange}
           />
-
           <Label for="geen">geen afwerking</Label>
           <RadioInput
             type="radio"
@@ -181,7 +186,6 @@ function ConnectorDialogContainer({
             checked={installationRadio.value === "krimpkous"}
             onChange={installationRadio.onChange}
           />
-
           <Label for="krimpkous">zwarte krimpkous</Label>
           <RadioInput
             type="radio"
@@ -191,10 +195,15 @@ function ConnectorDialogContainer({
             checked={installationRadio.value === "tule"}
             onChange={installationRadio.onChange}
           />
-
           <Label for="tule">tule</Label>
-          <h3>tules</h3>
-          <Tules tulegroep={openConnector.tulegroep} />
+          <div>banaan: {tuleState}</div>
+          {installationRadio.value === "tule" ? (
+            <Tules
+              tulegroep={openConnector.tulegroep}
+              onChange={(banaan) => setTuleState(banaan)}
+              tuleOrder={tuleState}
+            />
+          ) : null}
         </DialogContent>
         <DialogFooter>
           <ConfirmButton

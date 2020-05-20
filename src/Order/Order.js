@@ -115,6 +115,8 @@ export function Order({ setOpenCable, orders, setOrders, setOpenConnector }) {
                 {order.installation && (
                   <DetailItem>afwerking: {order.installation}</DetailItem>
                 )}
+                {/* <div>tule: {order.tule}</div> */}
+                {order.tule && <DetailItem>{order.tule}</DetailItem>}
               </OrderContainer>
             ))}
             <OrderContainer>
