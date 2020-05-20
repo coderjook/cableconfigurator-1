@@ -120,7 +120,8 @@ function ConnectorDialogContainer({
   // const tuleRadio = useChoice();
   const isEditing = openConnector.index > -1;
   const [tuleState, setTuleState] = useState();
-  const tuleOrder = `${tuleState}`;
+
+  const tuleOrder = tuleState ? `${tuleState}` : null;
 
   function close() {
     setOpenConnector();
@@ -157,14 +158,8 @@ function ConnectorDialogContainer({
           <DialogBannerName>{openConnector.typenummer}</DialogBannerName>
         </DialogBanner>
         <DialogContent>
-          {openConnector.tulegroep}
-          {/* <QuantityInput quantity={quantity} /> */}
-          {hasToppings(openConnector) && (
-            <>
-              <h3> Would you like toppings?</h3>
-              <Toppings {...toppings} />
-            </>
-          )}
+          {/* {openConnector.tulegroep} */}
+
           {openConnector.choices && (
             <Choices openConnector={openConnector} choiceRadio={choiceRadio} />
           )}
@@ -196,13 +191,16 @@ function ConnectorDialogContainer({
             onChange={installationRadio.onChange}
           />
           <Label for="tule">tule</Label>
-          <div>banaan: {tuleState}</div>
+
           {installationRadio.value === "tule" ? (
-            <Tules
-              tulegroep={openConnector.tulegroep}
-              onChange={(banaan) => setTuleState(banaan)}
-              tuleOrder={tuleState}
-            />
+            <>
+              <div>tule: {tuleState}</div>
+              <Tules
+                tulegroep={openConnector.tulegroep}
+                onChange={(banaan) => setTuleState(banaan)}
+                tuleOrder={tuleState}
+              />
+            </>
           ) : null}
         </DialogContent>
         <DialogFooter>

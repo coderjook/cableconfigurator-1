@@ -108,15 +108,17 @@ export function Order({ setOpenCable, orders, setOrders, setOpenConnector }) {
                 ) : (
                   "geen topping"
                 )}
-                <DetailItem>lengte kabel: {order.length}</DetailItem>
-                {order.choice && (
+                {order.length ? (
+                  <DetailItem>lengte kabel: {order.length}</DetailItem>
+                ) : null}
+                {/* {order.choice && (
                   <DetailItem>afwerking: {order.choice}</DetailItem>
-                )}
+                )} */}
                 {order.installation && (
                   <DetailItem>afwerking: {order.installation}</DetailItem>
                 )}
                 {/* <div>tule: {order.tule}</div> */}
-                {order.tule && <DetailItem>{order.tule}</DetailItem>}
+                {order.tule ? <DetailItem>{order.tule}</DetailItem> : null}
               </OrderContainer>
             ))}
             <OrderContainer>
