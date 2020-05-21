@@ -20,6 +20,7 @@ import { useTitle } from "./Hooks/useTitle";
 // import orders
 import { Order } from "./Order/Order";
 import { useOrders } from "./Hooks/useOrders";
+import Assemblie from "./Assemblie/Assemblie";
 
 // ***** functie App *****
 
@@ -38,10 +39,11 @@ function App() {
       <Navbar />
       <Order {...orders} {...openCable} {...openConnector} />
       <Banner />
+      <Assemblie />
       <h1>Stap 1 selecteer kabel </h1>
       <Cables {...openCable} />
       <h1>Stap 2 selecteer connector </h1>
-      <Connectors {...openConnector} />
+      <Connectors {...openConnector} {...orders} />
     </>
   );
 }

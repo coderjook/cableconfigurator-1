@@ -8,29 +8,33 @@ const ProductStyled = styled.div`
   margin: 0px 400px 50px 20px;
 `;
 
-export function Connectors({ setOpenConnector }) {
+export function Connectors({ setOpenConnector, orders }) {
+  console.log("orders:connector ", orders);
   return (
     <ProductStyled>
-      {Object.entries(connectors).map(([sectionName, connectors]) => (
+      {/* {Object.entries(connectors).map(([sectionName, connectors]) => (
         <>
-          <h3> {sectionName} </h3>
-          <ProductGrid>
-            {connectors.map((connector) => (
-              <Product
-                img={connector.img}
-                onClick={() => {
-                  setOpenConnector(connector);
-                }}
-              >
-                <ProductLabel>
-                  <div>{connector.typenummer}</div>
-                  <div>{formatPrice(connector.inkoopprijs)}</div>
-                </ProductLabel>
-              </Product>
-            ))}
-          </ProductGrid>
-        </>
-      ))}
+          <h3> {sectionName} </h3> */}
+      order kabel {orders.artikelnummer}
+      <ProductGrid>
+        {connectors.map((connector) => (
+          <>
+            <Product
+              img={connector.img}
+              onClick={() => {
+                setOpenConnector(connector);
+              }}
+            >
+              <ProductLabel>
+                <div>{connector.typenummer}</div>
+                <div>{formatPrice(connector.inkoopprijs)}</div>
+              </ProductLabel>
+            </Product>
+          </>
+        ))}
+      </ProductGrid>
+      {/* </> */}
+      // ))}
     </ProductStyled>
   );
 }
