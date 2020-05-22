@@ -8,7 +8,7 @@ const ProductStyled = styled.div`
   margin: 0px 400px 50px 20px;
 `;
 
-export function ConnectorsB({ setOpenConnector, orders }) {
+function ConnectorsBContent({ setOpenConnector, orders }) {
   let orderKabelgroep = null;
   if (orders.length <= 1) {
     orderKabelgroep = null;
@@ -47,4 +47,9 @@ export function ConnectorsB({ setOpenConnector, orders }) {
       )}
     </ProductStyled>
   );
+}
+
+export function ConnectorsB(orders) {
+  if (orders.length <= 1) return null;
+  return <ConnectorsBContent {...orders} />;
 }
