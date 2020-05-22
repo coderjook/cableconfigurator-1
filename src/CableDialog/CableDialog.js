@@ -6,6 +6,7 @@ import { title } from "../Styles/title";
 import { formatPrice } from "../Data/FoodData";
 import { LengthInput } from "./LengthInput";
 import { useLength } from "../Hooks/useLength";
+import { useAssemblie } from "../Assemblie/useAssemblie";
 
 const Dialog = styled.div`
   width: 500px;
@@ -89,9 +90,10 @@ function CableDialogContainer({
   orders,
 }) {
   const length = useLength(openCable && openCable.length);
+  const assemblie = useAssemblie();
 
   const isEditing = openCable.index > -1;
-
+  console.log("assemblie", assemblie.artnrCable);
   function close() {
     setOpenCable();
   }
@@ -122,6 +124,7 @@ function CableDialogContainer({
       <Dialog>
         <DialogBanner img={openCable.img}>
           <DialogBannerName> {openCable.typenummer} </DialogBannerName>
+          <DialogBannerName> {openCable.kabelgroep} </DialogBannerName>
         </DialogBanner>
         <DialogContent>
           <LengthInput length={length} />

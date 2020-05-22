@@ -8,9 +8,9 @@ const ProductStyled = styled.div`
   margin: 0px 400px 50px 20px;
 `;
 
-export function Connectors({ setOpenConnector, orders }) {
+export function ConnectorsB({ setOpenConnector, orders }) {
   let orderKabelgroep = null;
-  if (orders.length === 0) {
+  if (orders.length <= 1) {
     orderKabelgroep = null;
   } else {
     console.log("connkabelgroep ", orders[0].kabelgroep);

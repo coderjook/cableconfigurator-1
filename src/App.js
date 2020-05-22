@@ -11,6 +11,7 @@ import { Cables } from "./Products/Cables";
 import { useOpenConnector } from "./Hooks/useOpenConnector";
 import { ConnectorDialog } from "./ConnectorDialog/ConnectorDialog";
 import { Connectors } from "./Products/Connectors";
+import { ConnectorsB } from "./Products/ConnectorsB";
 
 // import styles
 import { GlobalStyle } from "./Styles/GlobalStyle";
@@ -42,8 +43,10 @@ function App() {
       <Assemblie />
       <h1>Stap 1 selecteer kabel </h1>
       <Cables {...openCable} />
-      <h1>Stap 2 selecteer connector </h1>
+      <h1>Stap 2 selecteer connectorA</h1>
       <Connectors {...openConnector} {...orders} />
+      <h1>Stap 3 selecteer connectorB </h1>
+      <ConnectorsB {...openConnector} {...orders} />
     </>
   );
 }
